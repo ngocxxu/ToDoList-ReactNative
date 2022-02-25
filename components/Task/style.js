@@ -15,9 +15,14 @@ const styles = StyleSheet.create({
     width: 48,
     height: 36,
     borderRadius: 10,
-    backgroundColor: color.second,
     alignItems: "center",
     justifyContent: "center",
+  },
+  even:{
+    backgroundColor: color.second,
+  },
+  odd:{
+    backgroundColor: color.green,
   },
   number: {
     color: color.white,

@@ -1,17 +1,26 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
-import styles from "./style"
+import styles from "./style";
 
-const Task = () => {
+const Task = (props) => {
+  const { number } = props;
+  const numberText = number < 10 ? `0${number}` : number;
+
   return (
-    <TouchableOpacity>
-      <View style={styles.item}>
-        <View style={styles.square}>
-          <Text style={styles.number}>01</Text>
+    <>
+      <TouchableOpacity
+      onPress={props.onDeleteTask}
+      >
+        <View style={styles.item}>
+          <View
+            style={[styles.square, number % 2 === 0 ? styles.even : styles.odd]}
+          >
+            <Text style={styles.number}>{numberText}</Text>
+          </View>
+          <Text style={styles.content}>{props.title}</Text>
         </View>
-        <Text style={styles.content}>Lau nha</Text>
-      </View>
-    </TouchableOpacity>
+      </TouchableOpacity>
+    </>
   );
 };
 

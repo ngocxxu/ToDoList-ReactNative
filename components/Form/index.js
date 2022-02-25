@@ -1,14 +1,37 @@
-import { View, Text, TextInput } from "react-native";
-import React from "react";
+import {
+  View,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  Keyboard,
+} from "react-native";
+import React, { useState } from "react";
 import styles from "./style";
 
-const Form = () => {
+const Form = (props) => {
+  const [task, setTask] = useState("");
+  const handleAddTask = () => {
+    if (task.length === 0) {
+      alert("Vui lòng nhập thông tin!");
+      return;
+    }
+    props.onAddTask(task);
+    setTask("");
+    Keyboard.dismiss();
+  };
   return (
     <View style={styles.addTask}>
-      <TextInput style={styles.input} />
-      <View style={styles.iconWrapper}>
-        <Text style={styles.icon}>+</Text>
-      </View>
+      <TextInput
+        value={task}
+        onChangeText={(text) => setTask(text)}
+        placeholder="Your Task"
+        style={styles.input}
+      />
+      <TouchableOpacity onPress={handleAddTask}>
+        <View style={styles.iconWrapper}>
+          <Text style={styles.icon}>+</Text>
+        </View>
+      </TouchableOpacity>
     </View>
   );
 };
